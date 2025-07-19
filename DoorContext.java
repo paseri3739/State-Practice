@@ -6,7 +6,7 @@ public class DoorContext {
     }
 
     public void handleEvent(DoorEvent event) {
-        this.currentState = currentState.transition(event, this); // setterを用いないで新しい状態を生成して自分で再代入することで安全になる。
+        this.currentState = currentState.transition(event); // setterを用いないで新しい状態を生成して自分で再代入することで安全になる。
     }
 
     public String getCurrentStateName() {

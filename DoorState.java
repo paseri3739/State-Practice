@@ -1,4 +1,4 @@
 public interface DoorState {
-    DoorState transition(DoorEvent event, DoorContext context);
+    DoorState transition(DoorEvent event);
     String getName();
 }

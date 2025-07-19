@@ -1,6 +1,6 @@
 public class ClosedState implements DoorState {
     @Override
-    public DoorState transition(DoorEvent event, DoorContext context) {
+    public DoorState transition(DoorEvent event) {
         if (event == DoorEvent.PRESS_BUTTON) {
             System.out.println("ドアを開けます");
             return new OpeningState();
