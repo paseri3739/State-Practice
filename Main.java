@@ -1,13 +1,13 @@
-// Main.java
 public class Main {
     public static void main(String[] args) {
         DoorContext door = new DoorContext();
-        door.pressButton();         // Closed → Opening
-        door.fullyOpened();        // Opening → Opened
-        door.pressButton();        // Opened → Closing
-        door.obstacleDetected();   // Closing → Opening
-        door.fullyOpened();        // Opening → Opened
-        door.pressButton();        // Opened → Closing
-        door.fullyClosed();        // Closing → Closed
+
+        door.handleEvent(DoorEvent.PRESS_BUTTON);        // Closed → Opening
+        door.handleEvent(DoorEvent.FULLY_OPENED);        // Opening → Opened
+        door.handleEvent(DoorEvent.PRESS_BUTTON);        // Opened → Closing
+        door.handleEvent(DoorEvent.OBSTACLE_DETECTED);   // Closing → Opening
+        door.handleEvent(DoorEvent.FULLY_OPENED);        // Opening → Opened
+        door.handleEvent(DoorEvent.PRESS_BUTTON);        // Opened → Closing
+        door.handleEvent(DoorEvent.FULLY_CLOSED);        // Closing → Closed
     }
 }

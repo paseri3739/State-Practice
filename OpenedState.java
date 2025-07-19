@@ -1,19 +1,13 @@
-// OpenedState.java
 public class OpenedState implements DoorState {
     @Override
-    public void pressButton(DoorContext context) {
-        System.out.println("ドアを閉めます");
-        context.setState(new ClosingState());
+    public void transition(DoorEvent event, DoorContext context) {
+        if (event == DoorEvent.PRESS_BUTTON) {
+            System.out.println("ドアを閉めます");
+            context.setState(new ClosingState());
+        } else {
+            System.out.println("無効な操作: " + event + " in Opened");
+        }
     }
-
-    @Override
-    public void fullyOpened(DoorContext context) {}
-
-    @Override
-    public void fullyClosed(DoorContext context) {}
-
-    @Override
-    public void obstacleDetected(DoorContext context) {}
 
     @Override
     public String getName() {

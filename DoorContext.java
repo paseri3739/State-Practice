@@ -1,34 +1,17 @@
-// DoorContext.java
 public class DoorContext {
-    // 現在の状態。インターフェースでポリモーフィズムを実現する。現在の状態が次の状態を生成し、かつ状態が振る舞いをもつことで
-    // 現在の状態に応じて自動的に処理が切り替わるようにできる
-    private DoorState currentState;
+    private DoorState currentState; // 現在の状態
 
     public DoorContext() {
-        this.currentState = new ClosedState(); // 初期状態。これはコンストラクタの引数で受け取ってもいい。
+        this.currentState = new ClosedState(); // 初期状態
     }
 
-    public void setState(DoorState state) {
-        System.out.println("状態遷移: " + this.currentState.getName() + " → " + state.getName());
-        this.currentState = state;
+    public void setState(DoorState newState) {
+        System.out.println("状態遷移: " + this.currentState.getName() + " → " + newState.getName());
+        this.currentState = newState;
     }
 
-    // イベント処理は現在の状態に応じたメソッドを呼び出すだけになる。
-    // このようにクライアント側がifを書かないのが良いコード。
-    public void pressButton() {
-        currentState.pressButton(this);
-    }
-
-    public void fullyOpened() {
-        currentState.fullyOpened(this);
-    }
-
-    public void fullyClosed() {
-        currentState.fullyClosed(this);
-    }
-
-    public void obstacleDetected() {
-        currentState.obstacleDetected(this);
+    public void handleEvent(DoorEvent event) {
+        currentState.transition(event, this); // currentStateを書き換えさせることで振る舞いが変化していく。
     }
 
     public String getCurrentStateName() {
