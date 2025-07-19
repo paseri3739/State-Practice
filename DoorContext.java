@@ -5,13 +5,8 @@ public class DoorContext {
         this.currentState = new ClosedState(); // 初期状態
     }
 
-    public void setState(DoorState newState) {
-        System.out.println("状態遷移: " + this.currentState.getName() + " → " + newState.getName());
-        this.currentState = newState;
-    }
-
     public void handleEvent(DoorEvent event) {
-        currentState.transition(event, this); // currentStateを書き換えさせることで振る舞いが変化していく。
+        this.currentState = currentState.transition(event, this); // setterを用いないで新しい状態を生成して自分で再代入することで安全になる。
     }
 
     public String getCurrentStateName() {
